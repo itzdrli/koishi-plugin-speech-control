@@ -1,5 +1,5 @@
 {
-  "name": "koishi-plugin-phrase-recaller",
+  "name": "koishi-plugin-speech-control",
   "description": "simple plugin when detects a specific phrase then recall it",
   "version": "0.0.1",
   "main": "lib/index.js",
