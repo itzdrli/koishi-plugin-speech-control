@@ -1,13 +1,21 @@
 {
   "name": "koishi-plugin-speech-control",
-  "description": "simple plugin when detects a specific phrase then recall it",
+  "description": "Speech Control your corwds",
   "version": "0.0.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
+  "author": {
+    "name": "Itz_Dr_Li",
+    "email": "liletian1231@outlook.com"
+  },
   "files": [
     "lib",
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itzdrli/speech-control.git"
+  },
   "license": "MIT",
   "scripts": {},
   "keywords": [
