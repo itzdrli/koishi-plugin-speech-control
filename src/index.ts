@@ -4,7 +4,7 @@ export const name = 'speech-control'
 
 export interface Config {
   phrases: Array<string>,
-  punishMessage: string,yarn
+  punishMessage: string,
   muteOrNot: boolean,
   muteTime: number,
   recallOrNot: boolean,
