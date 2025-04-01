@@ -8,6 +8,7 @@ export interface Config {
   muteOrNot: boolean,
   muteTime: number,
   recallOrNot: boolean,
+  enabledGroups: any
 }
 
 export const usage = `
@@ -29,19 +30,21 @@ export const Config: Schema<Config> = Schema.object({
   muteOrNot: Schema.boolean().description("是否禁言").default(true),
   muteTime: Schema.number().default(60000).description("禁言时间(毫秒)"),
   recallOrNot: Schema.boolean().description("是否撤回").default(true),
+  enabledGroups: Schema.array(String).description("启用的群组").default([]).required()
 })
 
 export function apply(ctx: Context, config: Config) {
   ctx.on('message', (session) => {
     if (session.isDirect === true) return
+    if (!config.enabledGroups.includes(session.guildId)) return
     let response = config.punishMessage
     config.phrases.forEach((phrase) => {
       if (session.content.includes(phrase)) {
-        if (config.muteOrNot === true) { 
+        if (config.muteOrNot) { 
           session.bot.muteGuildMember(session.guildId, session.userId, config.muteTime)
           response += ", 已禁言 "
         }
-        if (config.recallOrNot === true) {
+        if (config.recallOrNot) {
           session.bot.deleteMessage(session.channelId, session.messageId)
           response += ", 已撤回"
         }
