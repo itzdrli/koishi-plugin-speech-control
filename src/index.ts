@@ -40,7 +40,7 @@ export function apply(ctx: Context, config: Config) {
     let response = config.punishMessage
     config.phrases.forEach((phrase) => {
       if (session.content.includes(phrase)) {
-        if (config.muteOrNot) { 
+        if (config.muteOrNot) {
           session.bot.muteGuildMember(session.guildId, session.userId, config.muteTime)
           response += ", 已禁言 "
         }
@@ -48,7 +48,9 @@ export function apply(ctx: Context, config: Config) {
           session.bot.deleteMessage(session.channelId, session.messageId)
           response += ", 已撤回"
         }
-        session.send(response)
+        if (config.punishMessage) {
+          session.send(response)
+        }
         return
       }
       else return
